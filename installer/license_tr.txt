@@ -1,0 +1,13 @@
+﻿KULLANIM KOŞULLARI
+
+Bu uygulama yalnızca kişisel kullanım içindir. Yalnızca sahibi olduğunuz veya indirme izniniz bulunan içerikleri indirin. Telif haklarına ve ilgili sitelerin kullanım koşullarına uymak sizin sorumluluğunuzdadır. Uygulama olduğu gibi sunulur; garanti verilmez ve kullanımdan doğan sorunlardan geliştirici sorumlu tutulamaz.
+
+GIZLILIK POLITIKASI
+
+Ayarlarınız ve indirme geçmişiniz yalnızca bu bilgisayarda saklanır. Uygulama kullanım verisi toplamaz, hesap istemez ve sizi izlemez. Bir bağlantıyı analiz ettiğinizde veya indirdiğinizde bağlantı yalnızca videoyu barındıran siteye gönderilir. Geçmişi istediğiniz zaman silebilirsiniz.
+
+AÇIK KAYNAK LISANSLARI
+
+yt-dlp: Unlicense. FFmpeg (imageio-ffmpeg ile): LGPL/GPL, sürüme göre. pywebview: BSD-3-Clause. FastAPI: MIT. Uvicorn: BSD-3-Clause. Tam metinler ilgili projelerin sitelerindedir.
+
+Bu metinler genel bilgilendirme içindir, hukuki tavsiye değildir.

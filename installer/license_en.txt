@@ -1,0 +1,13 @@
+﻿TERMS OF USE
+
+This app is for personal use only. Download only content that you own or have permission to download. You are responsible for respecting copyright and the terms of the websites you use. The app is provided as is, without warranty, and the developer is not liable for problems caused by its use.
+
+PRIVACY POLICY
+
+Your settings and download history are stored only on this computer. The app collects no usage data, asks for no account and does not track you. When you analyze or download a link, it is sent only to the site that hosts the video. You can delete your history at any time.
+
+OPEN-SOURCE LICENSES
+
+yt-dlp: Unlicense. FFmpeg (via imageio-ffmpeg): LGPL/GPL, depending on the build. pywebview: BSD-3-Clause. FastAPI: MIT. Uvicorn: BSD-3-Clause. Full texts are on each project's website.
+
+These texts are for general information and are not legal advice.

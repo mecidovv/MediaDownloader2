@@ -1,0 +1,13 @@
+﻿NUTZUNGSBEDINGUNGEN
+
+Diese App ist nur für den persönlichen Gebrauch gedacht. Lade nur Inhalte herunter, die dir gehören oder die du herunterladen darfst. Du bist selbst dafür verantwortlich, Urheberrechte und die Bedingungen der genutzten Websites einzuhalten. Die App wird ohne Gewähr bereitgestellt; der Entwickler haftet nicht für Probleme bei der Nutzung.
+
+DATENSCHUTZERKLÄRUNG
+
+Deine Einstellungen und dein Download-Verlauf werden nur auf diesem Computer gespeichert. Die App sammelt keine Nutzungsdaten, verlangt kein Konto und verfolgt dich nicht. Wenn du einen Link prüfst oder herunterlädst, wird er nur an die Website gesendet, die das Video hostet. Du kannst den Verlauf jederzeit löschen.
+
+OPEN-SOURCE-LIZENZEN
+
+yt-dlp: Unlicense. FFmpeg (über imageio-ffmpeg): LGPL/GPL, je nach Build. pywebview: BSD-3-Clause. FastAPI: MIT. Uvicorn: BSD-3-Clause. Die vollständigen Texte stehen auf den Webseiten der Projekte.
+
+Diese Texte dienen nur der allgemeinen Information und sind keine Rechtsberatung.

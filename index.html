@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#121214">
+  <title>Video Downloader</title>
+  <link rel="icon" href="assets/icons/app.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="window led" id="appWindow">
+    <div class="window-inner led-in">
+      <div class="toolbar">
+        <div class="toolbar-actions">
+          <button class="icon-button" id="settingsOpen" type="button" aria-label="Ayarlar" title="Ayarlar" data-i18n-aria="set.title" data-i18n-title="set.title">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.1a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          </button>
+          <button class="icon-button" id="historyOpen" type="button" aria-label="Geçmiş" title="Geçmiş" data-i18n-aria="hist.btn" data-i18n-title="hist.btn">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg>
+          </button>
+        </div>
+        <span class="toolbar-spacer"></span>
+      </div>
+
+      <section class="main-content" aria-label="Video indirme">
+        <div class="download-stack">
+          <h1 class="hero-title">Video Downloader</h1>
+          <form class="link-box" id="linkForm">
+            <svg class="link-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+            <input id="videoUrl" type="text" inputmode="url" autocomplete="url" aria-label="Video bağlantısı" data-i18n-aria="link.a">
+            <span class="platform-pill" id="platformPill" hidden></span>
+            <button class="paste-button" id="pasteButton" type="button" title="Panodan yapıştır" data-i18n-title="paste.t">
+              <svg viewBox="0 0 24 24"><rect x="8" y="4" width="12" height="16" rx="2"/><path d="M16 4V3a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v1M8 7H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1"/></svg><span data-i18n="paste.l">Yapıştır</span>
+            </button>
+            <button class="download-button" id="downloadButton" type="submit" aria-label="İndir" title="Bağlantıyı analiz et" data-i18n-title="btn.analyze">
+              <svg viewBox="0 0 24 24"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14"/></svg>
+            </button>
+            <div class="link-progress" id="linkProgress"></div>
+          </form>
+
+          <div class="hint-row"><span id="platformHint"></span></div>
+
+          <section class="video-card" id="videoCard" aria-live="polite" hidden>
+            <div class="thumbnail" id="videoThumbnail">
+              <div class="thumbnail-art"><span class="play-icon"><svg viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"/></svg></span></div>
+              <span class="duration" id="videoDuration">04:32</span>
+            </div>
+            <div class="video-details">
+              <div>
+                <div class="video-title" id="videoTitle">Video başlığı burada görünür</div>
+                <div class="video-subtitle" id="videoSubtitle">Video bilgileri bağlantıdan alınır</div>
+              </div>
+              <div class="format-row" role="group" aria-label="Dosya biçimi" data-i18n-aria="fmt.g">
+                <button class="pill active" data-format="MP4" type="button">MP4</button>
+                <button class="pill" data-format="MP3" type="button">MP3</button>
+                <span class="separator"></span>
+                <div class="quality-options" id="qualityOptions" role="group" aria-label="Video kalitesi" data-i18n-aria="q.g"></div>
+              </div>
+              <div class="video-options">
+                <label class="inline-check"><input id="thumbnailOption" type="checkbox"><span data-i18n="o.thumb">Küçük resmi kaydet</span></label>
+                <label class="inline-check"><input id="subtitleOption" type="checkbox"><span data-i18n="o.subs">Altyazıları ekle</span></label>
+                <button class="start-download" id="startDownload" type="button"><svg viewBox="0 0 24 24"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14"/></svg> <span data-i18n="b.start">İndirmeyi başlat</span></button>
+              </div>
+              <div class="download-state" id="downloadState" hidden><span class="state-label">Hazırlanıyor</span><div class="progress-track"><span id="downloadProgress"></span></div><span id="progressPercent">0%</span></div>
+            </div>
+          </section>
+
+          <div class="empty-note" id="emptyNote" hidden></div>
+        </div>
+      </section>
+      </div>
+  </main>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer settings-drawer" id="settingsDrawer" aria-hidden="true" aria-labelledby="settingsTitle">
+    <div class="drawer-header"><div><span class="eyebrow" data-i18n="s.eye">TERCİHLER</span><h2 id="settingsTitle" data-i18n="set.title">Ayarlar</h2></div><button class="close-button" data-close-drawer type="button" aria-label="Ayarları kapat" data-i18n-aria="s.close"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav class="settings-tabs" aria-label="Ayar kategorileri" data-i18n-aria="s.tabs">
+      <button class="settings-tab active" data-tab="general" type="button" data-i18n="t.gen">Genel</button>
+      <button class="settings-tab" data-tab="appearance" type="button" data-i18n="t.app">Görünüm</button>
+      <button class="settings-tab" data-tab="colors" type="button" data-i18n="t.col">Renk</button>
+      <button class="settings-tab" data-tab="smart" type="button" data-i18n="t.smart">Akıllı</button>
+      <button class="settings-tab" data-tab="notifications" type="button" data-i18n="t.notif">Bildirimler</button>
+      <button class="settings-tab" data-tab="advanced" type="button" data-i18n="t.adv">Gelişmiş</button>
+      <button class="settings-tab" data-tab="about" type="button" data-i18n="t.about">Hakkında</button>
+    </nav>
+    <div class="settings-scroll">
+      <section class="settings-page active" data-page="general">
+        <div class="section-heading"><span class="eyebrow" data-i18n="g.eye">GENEL</span><h3 data-i18n="g.h">İndirme tercihleri</h3></div>
+        <label class="field-label" for="downloadFolder" data-i18n="g.folder">İndirme klasörü</label><div class="input-with-action"><input id="downloadFolder" data-setting="downloadFolder" type="text"><button id="browseFolder" class="small-action" type="button" data-i18n="g.browse">Gözat</button></div>
+        <label class="field-label" for="defaultFormat" data-i18n="g.fmt">Varsayılan format</label><select id="defaultFormat" data-setting="defaultFormat"><option>MP4</option><option>MP3</option></select>
+        <label class="field-label" for="defaultQuality" data-i18n="g.q">Varsayılan kalite</label><select id="defaultQuality" data-setting="defaultQuality"><option value="Kaynağın en iyisi" data-i18n="q.best">Kaynağın en iyisi</option><option>4320p (8K)</option><option>2160p (4K)</option><option>1440p (2K)</option><option>1080p</option><option>720p</option><option>480p</option><option>360p</option><option>240p</option><option>144p</option></select>
+        <label class="field-label" for="language" data-i18n="g.lang">Dil</label><select id="language" data-setting="language"><option value="tr">Türkçe</option><option value="en">English</option><option value="ru">Русский</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="ko">한국어</option><option value="zh">中文 (简体)</option></select>
+              </section>
+      <section class="settings-page" data-page="appearance">
+        <div class="section-heading"><span class="eyebrow" data-i18n="a.eye">GÖRÜNÜM</span><h3 data-i18n="a.h">Arayüzü kişiselleştir</h3></div>
+        <div class="setting-row"><div><strong data-i18n="led.t">LED çerçeve</strong><small data-i18n="led.s">Animasyonlu pencere kenarlığı</small></div><label class="switch"><input data-setting="ledEnabled" type="checkbox"><span></span></label></div>
+        <label class="field-label" for="ledSpeed"><span data-i18n="led.sp">LED hızı</span> <output data-output="ledSpeed"></output></label><input id="ledSpeed" data-setting="ledSpeed" type="range" min="1" max="10" step="0.5">
+        <label class="field-label" for="ledBrightness"><span data-i18n="led.br">LED parlaklığı</span> <output data-output="ledBrightness"></output></label><input id="ledBrightness" data-setting="ledBrightness" type="range" min="10" max="100" step="5">
+        <label class="field-label" for="ledDensity"><span data-i18n="led.de">LED yoğunluğu</span> <output data-output="ledDensity"></output></label><input id="ledDensity" data-setting="ledDensity" type="range" min="1" max="100" step="1">
+        <div class="setting-row"><div><strong data-i18n="mo.t">Animasyonları azalt</strong><small data-i18n="mo.s">Hareket hassasiyeti için</small></div><label class="switch"><input data-setting="reduceMotion" type="checkbox"><span></span></label></div>
+      </section>
+      <section class="settings-page" data-page="colors">
+        <div class="section-heading"><span class="eyebrow" data-i18n="c.eye">RENK SİSTEMİ</span><h3 data-i18n="c.h">Vurgu rengini seç</h3></div>
+        <div class="preset-colors" aria-label="Hazır renkler" data-i18n-aria="c.pre">
+          <button type="button" class="color-preset" data-color="#E0142B" aria-label="Kırmızı" title="Kırmızı" data-i18n-aria="c.red" data-i18n-title="c.red"></button><button type="button" class="color-preset" data-color="#F05A28" aria-label="Turuncu" title="Turuncu" data-i18n-aria="c.ora" data-i18n-title="c.ora"></button><button type="button" class="color-preset" data-color="#E8B923" aria-label="Sarı" title="Sarı" data-i18n-aria="c.yel" data-i18n-title="c.yel"></button><button type="button" class="color-preset" data-color="#40C98B" aria-label="Yeşil" title="Yeşil" data-i18n-aria="c.grn" data-i18n-title="c.grn"></button><button type="button" class="color-preset" data-color="#27A8E0" aria-label="Mavi" title="Mavi" data-i18n-aria="c.blu" data-i18n-title="c.blu"></button><button type="button" class="color-preset" data-color="#8B6BEE" aria-label="Mor" title="Mor" data-i18n-aria="c.pur" data-i18n-title="c.pur"></button>
+        </div>
+        <div class="color-picker-wrap"><canvas id="colorWheel" width="260" height="260" aria-label="Renk çarkı" data-i18n-aria="c.wh"></canvas><div class="color-center"><span id="colorSwatch"></span><small data-i18n="c.ct">RENK</small></div></div>
+        <label class="field-label" for="colorSaturation"><span data-i18n="c.sat">Doygunluk</span> <output data-output="colorSaturation"></output></label><input id="colorSaturation" type="range" min="0" max="100" value="86">
+        <label class="field-label" for="colorLightness"><span data-i18n="c.li">Parlaklık</span> <output data-output="colorLightness"></output></label><input id="colorLightness" type="range" min="20" max="75" value="48">
+        <label class="field-label" for="hexColor" data-i18n="c.hex">HEX rengi</label><div class="hex-row"><span class="hash">#</span><input id="hexColor" maxlength="6" value="E0142B" aria-label="HEX renk değeri" data-i18n-aria="c.hexa"><button id="applyHex" class="small-action" type="button" data-i18n="c.ap">Uygula</button></div>
+        <div class="field-label" data-i18n="c.rec">Son kullanılan renkler</div><div class="recent-colors" id="recentColors"><span class="muted-copy">Henüz renk yok</span></div>
+      </section>
+      <section class="settings-page" data-page="smart">
+        <div class="section-heading"><span class="eyebrow" data-i18n="m.eye">AKILLI ÖZELLİKLER</span><h3 data-i18n="m.h">Otomatik işlemler</h3></div>
+        <div class="setting-row"><div><strong data-i18n="m.clip">Panodaki bağlantıyı algıla</strong><small data-i18n="m.clips">Uygulama açıkken yeni video linkini fark et</small></div><label class="switch"><input data-setting="clipboardDetection" type="checkbox"><span></span></label></div>
+        <div class="setting-row"><div><strong data-i18n="m.open">İndirme bitince klasörü aç</strong><small data-i18n="m.opens">İndirilen dosyanın bulunduğu klasörü aç</small></div><label class="switch"><input data-setting="openFolderAfterDownload" type="checkbox"><span></span></label></div>
+        <div class="setting-row"><div><strong data-i18n="o.thumb">Küçük resmi kaydet</strong><small data-i18n="m.ths">İndirme tercihlerinde ön tanımlı seçim</small></div><label class="switch"><input data-setting="saveThumbnail" type="checkbox"><span></span></label></div>
+        <div class="setting-row"><div><strong data-i18n="o.subs">Altyazıları ekle</strong><small data-i18n="m.sbs">Kaynakta mevcutsa altyazı seçeneğini işaretle</small></div><label class="switch"><input data-setting="includeSubtitles" type="checkbox"><span></span></label></div>
+      </section>
+      <section class="settings-page" data-page="notifications">
+        <div class="section-heading"><span class="eyebrow" data-i18n="n.eye">BİLDİRİMLER</span><h3 data-i18n="n.h">Bildirim tercihleri</h3></div>
+        <div class="setting-row"><div><strong data-i18n="n.show">Bildirimleri göster</strong><small data-i18n="n.shows">İndirme bitince bildirim göster</small></div><label class="switch"><input data-setting="notificationsEnabled" type="checkbox"><span></span></label></div>
+        <div class="setting-row"><div><strong data-i18n="n.snd">Bildirim sesi</strong><small data-i18n="n.snds">Yumuşak tamamlanma sesi</small></div><label class="switch"><input data-setting="soundEnabled" type="checkbox"><span></span></label></div>
+        <label class="field-label" for="soundVolume"><span data-i18n="n.vol">Ses seviyesi</span> <output data-output="soundVolume"></output></label><input id="soundVolume" data-setting="soundVolume" type="range" min="0" max="100" step="5">
+        <button class="secondary-button" id="previewSound" type="button"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13"/></svg> <span data-i18n="n.prev">Bildirim sesini önizle</span></button>
+      </section>
+      <section class="settings-page" data-page="advanced">
+        <div class="section-heading"><span class="eyebrow" data-i18n="d.eye">GELİŞMİŞ</span><h3 data-i18n="d.h">İndirme ve gizlilik</h3></div>
+        <label class="field-label" for="maxDownloads" data-i18n="d.max">Eş zamanlı indirme sayısı</label><select id="maxDownloads" data-setting="maxDownloads"><option value="1" data-i18n="d.n" data-n="1">1 indirme</option><option value="2" data-i18n="d.n" data-n="2">2 indirme</option><option value="3" data-i18n="d.n" data-n="3">3 indirme</option><option value="4" data-i18n="d.n" data-n="4">4 indirme</option><option value="5" data-i18n="d.n" data-n="5">5 indirme</option></select>
+        <label class="field-label" for="speedLimit" data-i18n="d.sp">Hız sınırı (KB/sn, 0 = sınırsız)</label><input id="speedLimit" data-setting="speedLimit" type="number" min="0" step="128">
+        <label class="field-label" for="retryCount" data-i18n="d.rt">Otomatik yeniden deneme</label><select id="retryCount" data-setting="retryCount"><option value="0" data-i18n="d.off">Kapalı</option><option value="1" data-i18n="d.x" data-n="1">1 kez</option><option value="2" data-i18n="d.x" data-n="2">2 kez</option><option value="3" data-i18n="d.x" data-n="3">3 kez</option><option value="5" data-i18n="d.x" data-n="5">5 kez</option></select>
+        <button class="secondary-button" id="clearTempFiles" type="button" data-i18n="d.tmp">Geçici dosyaları temizle</button>
+        <div class="setting-row"><div><strong data-i18n="d.log">İndirme günlükleri</strong><small data-i18n="d.logs">Oturum içi etkinlik kaydı</small></div><label class="switch"><input data-setting="downloadLogs" type="checkbox"><span></span></label></div>
+        <div class="setting-row"><div><strong data-i18n="d.win">Windows açılışında başlat</strong><small data-i18n="d.wins">Yerel masaüstü entegrasyonu gerektirir</small></div><label class="switch"><input data-setting="startWithWindows" type="checkbox"><span></span></label></div>
+        <div class="setting-row"><div><strong data-i18n="d.tray">Sistem tepsisine küçült</strong><small data-i18n="d.wins">Yerel masaüstü entegrasyonu gerektirir</small></div><label class="switch"><input data-setting="minimizeToTray" type="checkbox"><span></span></label></div>
+        <div class="setting-row"><div><strong data-i18n="d.https">HTTPS bağlantılarıyla sınırla</strong><small data-i18n="d.httpss">Güvenli olmayan bağlantılara karşı koruma</small></div><label class="switch"><input data-setting="httpsOnly" type="checkbox"><span></span></label></div>
+        <div class="setting-row"><div><strong data-i18n="d.ext">Harici içerik yükleme</strong><small data-i18n="d.exts">Video bilgisi için dış kaynak kullanımına izin ver</small></div><label class="switch"><input data-setting="externalContent" type="checkbox"><span></span></label></div>
+      </section>
+      <section class="settings-page" data-page="about">
+        <div class="section-heading"><span class="eyebrow" data-i18n="ab.eye">HAKKINDA</span><h3>Video Downloader</h3></div>
+        <div class="about-card"><span class="brand-mark"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 20h14"/></svg></span><div><strong>Video Downloader</strong><small data-i18n="ab.sub">Sürüm 1.0.0 · Windows masaüstü uygulaması</small></div></div>
+        <p class="field-help" id="aboutVersions"></p>
+        <button class="secondary-button" id="checkUpdates" type="button" data-i18n="ab.upd">Güncellemeleri kontrol et</button>
+        <details class="about-detail"><summary data-i18n="ab.log">Değişiklik geçmişi</summary><p data-i18n="ab.logt">1.0.0 — İlk sürüm: indirme, geçmiş, ayarlar, renk sistemi ve çok dilli arayüz.</p></details>
+        <details class="about-detail"><summary data-i18n="ab.terms">Kullanım koşulları</summary><p data-i18n="ab.termst">Bu uygulama yalnızca kişisel kullanım içindir. Yalnızca sahibi olduğunuz veya indirme izniniz bulunan içerikleri indirin. Telif haklarına ve ilgili sitelerin kullanım koşullarına uymak sizin sorumluluğunuzdadır. Uygulama olduğu gibi sunulur; garanti verilmez ve kullanımdan doğan sorunlardan geliştirici sorumlu tutulamaz.</p></details>
+        <details class="about-detail"><summary data-i18n="ab.priv">Gizlilik politikası</summary><p data-i18n="ab.privt">Ayarlarınız ve indirme geçmişiniz yalnızca bu bilgisayarda saklanır. Uygulama kullanım verisi toplamaz, hesap istemez ve sizi izlemez. Bir bağlantıyı analiz ettiğinizde veya indirdiğinizde bağlantı yalnızca videoyu barındıran siteye gönderilir. Geçmişi istediğiniz zaman silebilirsiniz.</p></details>
+        <details class="about-detail"><summary data-i18n="ab.lic">Açık kaynak lisansları</summary><p data-i18n="ab.lict">yt-dlp: Unlicense. FFmpeg (imageio-ffmpeg ile): LGPL/GPL, sürüme göre. pywebview: BSD-3-Clause. FastAPI: MIT. Uvicorn: BSD-3-Clause. Tam metinler ilgili projelerin sitelerindedir.</p></details>
+        <p class="field-help" data-i18n="ab.draft">Bu metinler genel bilgilendirme içindir, hukuki tavsiye değildir.</p>
+        <a class="support-link" href="mailto:?subject=Video%20Downloader%20feedback"><span data-i18n="ab.sup">Destek ve geri bildirim</span> <span>↗</span></a>
+        <p class="field-help" data-i18n="ab.tech">Bağlantı çözümleme ve indirme yt-dlp ile, MP3 dönüştürme ve birleştirme FFmpeg ile yapılır.</p>
+      </section>
+    </div>
+    <div class="drawer-footer"><span id="saveStatus" data-i18n="f.auto">Ayarlar otomatik kaydedilir</span><button class="text-button" id="resetSettings" type="button" data-i18n="f.reset">Varsayılana dön</button></div>
+  </aside>
+
+  <aside class="drawer history-drawer" id="historyDrawer" aria-hidden="true" aria-labelledby="historyTitle">
+    <div class="drawer-header"><div><span class="eyebrow" data-i18n="h.eye">KÜTÜPHANE</span><h2 id="historyTitle" data-i18n="h.t">İndirme geçmişi</h2></div><button class="close-button" data-close-drawer type="button" aria-label="Geçmişi kapat" data-i18n-aria="h.close"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="history-actions"><span id="historyCount">0 video</span><button class="text-button danger-text" id="clearHistory" type="button" data-i18n="h.clr">Geçmişi temizle</button></div>
+    <div class="history-list" id="historyList"></div>
+    <div class="history-empty" id="historyEmpty"><span class="empty-clock"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg></span><strong data-i18n="h.e1">Henüz indirme yok</strong><span data-i18n="h.e2">İndirdiklerin burada görünür.</span></div>
+  </aside>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  <script src="js/i18n.js"></script>
+  <script src="js/lang-tr.js"></script>
+  <script src="js/lang-en.js"></script>
+  <script src="js/lang-ru.js"></script>
+  <script src="js/lang-de.js"></script>
+  <script src="js/lang-it.js"></script>
+  <script src="js/lang-ko.js"></script>
+  <script src="js/lang-zh.js"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/color-picker.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

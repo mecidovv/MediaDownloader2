@@ -1,0 +1,13 @@
+﻿CONDIZIONI D’USO
+
+Questa app è solo per uso personale. Scarica solo contenuti di tua proprietà o che hai il permesso di scaricare. Sei tu responsabile del rispetto del diritto d’autore e delle condizioni dei siti che usi. L’app è fornita così com’è, senza garanzie; lo sviluppatore non risponde di problemi derivanti dall’uso.
+
+INFORMATIVA SULLA PRIVACY
+
+Le tue impostazioni e la cronologia dei download restano solo su questo computer. L’app non raccoglie dati di utilizzo, non richiede un account e non ti traccia. Quando analizzi o scarichi un link, questo viene inviato solo al sito che ospita il video. Puoi cancellare la cronologia in qualsiasi momento.
+
+LICENZE OPEN SOURCE
+
+yt-dlp: Unlicense. FFmpeg (tramite imageio-ffmpeg): LGPL/GPL, a seconda della build. pywebview: BSD-3-Clause. FastAPI: MIT. Uvicorn: BSD-3-Clause. I testi completi sono sui siti dei progetti.
+
+Questi testi hanno scopo informativo e non sono consulenza legale.
